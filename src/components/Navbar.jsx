@@ -1,123 +1,205 @@
-import { Menu, ArrowDownRight } from 'lucide-react';
-import { useState } from 'react';
-import './Navbar.css';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
+import BrandMark from "./BrandMark";
+import { personalInfo } from "../data/portfolioData";
+import "./Navbar.css";
 
-function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+const navItems = [
+  { label: "About", href: "about" },
+  { label: "Experience", href: "experience" },
+  { label: "Work", href: "work" },
+  { label: "Community", href: "community" },
+  { label: "Beyond", href: "beyond" },
+  { label: "Contact", href: "contact" },
+];
 
-  const links = [
-    { label: 'About', id: 'about' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Experience', id: 'experience' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Certifications', id: 'certifications' },
-    { label: 'Patents', id: 'patents' },
-    { label: 'Contact', id: 'contact' },
-  ];
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: 'smooth',
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // IntersectionObserver for active section link indicator
+  useEffect(() => {
+    const sectionIds = ["about", "experience", "work", "community", "beyond", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-25% 0px -55% 0px",
+        threshold: 0,
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
 
-    setMenuOpen(false);
+    return () => observer.disconnect();
+  }, []);
+
+  // Close mobile drawer on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
+
+  const scrollTo = (id) => {
+    setMobileOpen(false);
+    if (id === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <>
-      <header className="navbar">
+    <header className={`editorial-nav ${scrolled ? "nav-scrolled" : "nav-top"}`}>
+      <div className="nav-container">
+        {/* Monogram / Brand Identity */}
+        <button
+          onClick={() => scrollTo("top")}
+          className="nav-brand"
+          aria-label="Manthan Kumar - Scroll to top"
+        >
+          <span className="brand-mark-wrap">
+            <BrandMark size={28} className="nav-brand-mark" ariaLabel="Manthan Kumar M Monogram" />
+          </span>
+          <span className="brand-name">
+            <span className="brand-full">{personalInfo.name.toUpperCase()}</span>
+            <span className="brand-sub font-mono">ENGINEERING PORTFOLIO</span>
+          </span>
+        </button>
 
-        <div className="navbar-inner">
+        {/* Desktop Editorial Navigation */}
+        <nav className="nav-menu-desktop" aria-label="Main Navigation">
+          <ul className="nav-list">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href;
+              return (
+                <li key={item.href}>
+                  <button
+                    onClick={() => scrollTo(item.href)}
+                    className={`nav-link font-mono ${isActive ? "active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <span className="nav-label">{item.label}</span>
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active-indicator"
+                        className="nav-active-line"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 32,
+                        }}
+                      />
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
-          {/* Logo */}
-          <button
-            className="navbar-logo"
-            onClick={() => {
-              window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-              });
-            }}
-          >
-            <span className="navbar-logo-mark">
-              MK
-            </span>
+        {/* Action Controls: Theme + Resume + Mobile Hamburger */}
+        <div className="nav-actions">
+          <ThemeToggle />
 
-            <span className="navbar-logo-name">
-              Manthan Kumar
-            </span>
-          </button>
-
-
-          {/* Desktop navigation */}
-          <nav className="navbar-links">
-
-            {links.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-              >
-                {link.label}
-              </button>
-            ))}
-
-          </nav>
-
-
-          {/* Resume */}
           <a
-            href="/documents/resume/Manthan-Kumar-Resume.pdf"
+            href={personalInfo.contacts.resumeUrl}
             target="_blank"
-            rel="noreferrer"
-            className="navbar-resume"
+            rel="noopener noreferrer"
+            className="nav-resume-btn font-mono"
+            aria-label="Download or view Manthan Kumar's Resume"
           >
-            Resume
-            <ArrowDownRight size={15} />
+            <span>RESUME</span>
+            <ArrowUpRight size={13} className="resume-arrow" />
           </a>
 
-
-          {/* Mobile menu */}
           <button
-            className="navbar-menu-button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle navigation"
+            type="button"
+            className="nav-mobile-trigger"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-expanded={mobileOpen}
+            aria-label="Toggle navigation drawer"
           >
-            <Menu size={22} />
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-
         </div>
-
-      </header>
-
-
-      {/* Mobile menu */}
-      <div
-        className={`mobile-menu ${
-          menuOpen ? 'mobile-menu-open' : ''
-        }`}
-      >
-
-        {links.map((link) => (
-          <button
-            key={link.id}
-            onClick={() => scrollToSection(link.id)}
-          >
-            {link.label}
-          </button>
-        ))}
-
-        <a
-          href="/documents/resume/Manthan-Kumar-Resume.pdf"
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => setMenuOpen(false)}
-        >
-          Resume
-        </a>
-
       </div>
-    </>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="nav-mobile-drawer open"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="drawer-inner">
+              <div className="drawer-meta">
+                <span className="label-editorial">NAVIGATION</span>
+                <span className="font-mono text-muted">{personalInfo.location}</span>
+              </div>
+              <ul className="drawer-list">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.href;
+                  return (
+                    <li key={item.href}>
+                      <button
+                        onClick={() => scrollTo(item.href)}
+                        className={`drawer-link ${isActive ? "active" : ""}`}
+                      >
+                        <span className="drawer-label">{item.label}</span>
+                        <span className="drawer-arrow">→</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="drawer-footer">
+                <a
+                  href={personalInfo.contacts.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="drawer-resume-cta"
+                >
+                  <span>View Full Resume (PDF)</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }
-
-export default Navbar;

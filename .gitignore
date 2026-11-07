@@ -7,12 +7,20 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencies
+node_modules/
+
+# Production build artifacts
+dist/
+dist-ssr/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
 *.local
 
-# Editor directories and files
+# Editor and OS files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,3 +30,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+Thumbs.db

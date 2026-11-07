@@ -1,0 +1,303 @@
+.leadership-phase {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+/* Big Pull Statement */
+.leadership-pull-statement {
+  margin-bottom: clamp(48px, 6vw, 72px);
+  padding-bottom: 28px;
+  border-bottom: 2px solid var(--border-medium);
+}
+
+.pull-statement-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Stream of Leadership Roles (Open Editorial Spread, Not Cards) */
+.leadership-roles-stream {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 7vw, 88px);
+}
+
+.leadership-editorial-entry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: clamp(20px, 3.2vw, 36px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid var(--border-medium);
+}
+
+.leadership-entry-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: clamp(40px, 5vw, 64px);
+  width: 3.5px;
+  background-color: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+.leadership-editorial-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Entry Top Rail */
+.entry-top-rail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.entry-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.entry-index-badge {
+  color: var(--accent);
+  font-weight: 700;
+  background: var(--accent-soft);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--accent-border);
+}
+
+.entry-type-tag {
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.entry-sep {
+  color: var(--border-strong);
+}
+
+.entry-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+/* Entry Main Spread: Left Role Column + Right Narrative Column */
+.entry-main-spread {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: flex-start;
+}
+
+.entry-role-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.entry-super-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.entry-role-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.entry-org-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entry-org-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.015em;
+}
+
+.entry-institution {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.entry-supporting-line {
+  margin-top: 10px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-xs);
+}
+
+.statement-highlight {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Right Narrative Column */
+.entry-narrative-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.entry-narrative-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.entry-narrative-p {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.72;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+/* Focus Streams */
+.entry-focus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.focus-list-header {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.focus-chips-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.focus-stream-unit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  transition: border-color 0.2s ease;
+}
+
+.focus-stream-unit:hover {
+  border-color: var(--accent);
+}
+
+.stream-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.stream-title {
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.stream-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+/* Subtle Bridge to Phase 06 */
+.leadership-bridge-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-medium);
+  font-size: 11px;
+}
+
+.bridge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.bridge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+  transition: all 0.2s var(--ease-editorial);
+}
+
+.bridge-link:hover {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.bridge-arrow {
+  transition: transform 0.2s ease;
+}
+
+.bridge-link:hover .bridge-arrow {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 960px) {
+  .entry-main-spread {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .leadership-bridge-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

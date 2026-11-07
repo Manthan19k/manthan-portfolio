@@ -1,231 +1,213 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  Award,
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
-} from "lucide-react";
-
+import { ArrowUpRight, Check, Copy, Mail, MapPin } from "lucide-react";
+import { GithubIcon, LinkedinIcon, CredlyIcon } from "../components/Icons";
+import SectionHeader from "../components/SectionHeader";
+import BrandMark from "../components/BrandMark";
+import { personalInfo } from "../data/portfolioData";
 import "./Contact.css";
 
-const socialLinks = [
-  {
-    label: "GitHub",
-    href: "https://github.com/Manthan19k",
-    icon: Github,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/manthankumar-builds",
-    icon: Linkedin,
-  },
-  {
-    label: "Credly",
-    href: "https://www.credly.com/users/manthan-kumar.1ddcb416",
-    icon: Award,
-  },
-];
+const socialIconsMap = {
+  GitHub: GithubIcon,
+  LinkedIn: LinkedinIcon,
+  Credly: CredlyIcon,
+};
 
-const Contact = () => {
+export default function Contact() {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard?.writeText(personalInfo.contacts.primaryEmail);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2200);
+  };
+
   return (
-    <section className="contact-section" id="contact">
-      <div className="contact-container">
+    <section className="section-editorial contact-phase" id="contact">
+      <div className="container">
+        {/* Editorial Section Header */}
+        <SectionHeader
+          category="COMMUNICATION &amp; NETWORK"
+          title="Direct Gateway &amp;"
+          subtitle="Connection Channels."
+          description="Whether discussing a software initiative, cloud infrastructure concept, AI system idea, or a professional opportunity — let's connect."
+          meta="RESPONSIVE GATEWAY"
+        />
 
-        {/* SECTION LABEL */}
-        <motion.div
-          className="contact-section-label"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span>08</span>
-          <span>/</span>
-          <span>CONTACT</span>
-        </motion.div>
+        {/* Large Editorial Headline */}
+        <div className="contact-editorial-hero">
+          <motion.div
+            className="contact-lead-wrap"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h2 className="contact-display-heading">
+              LET&apos;S BUILD
+              <br />
+              <span className="contact-heading-outline">SOMETHING</span>
+              <br />
+              <span className="text-accent">MEANINGFUL.</span>
+            </h2>
+          </motion.div>
+        </div>
 
-        {/* MAIN HEADING */}
-        <motion.div
-          className="contact-heading"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-        >
-          <h2>
-            Let&apos;s build something
-            <span> meaningful.</span>
-          </h2>
-
-          <p>
-            Whether it&apos;s a software project, cloud solution,
-            AI-driven idea, or a meaningful collaboration —
-            I&apos;d be happy to connect.
-          </p>
-        </motion.div>
-
-        {/* CONTACT GRID */}
-        <motion.div
-          className="contact-grid"
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-
-          {/* EMAIL CARD */}
-          <div className="contact-email-card">
-
-            <div className="contact-card-icon">
-              <Mail size={21} strokeWidth={1.7} />
+        {/* Contact Matrix: Primary Email Card + Details & Channels */}
+        <div className="contact-matrix-grid">
+          {/* Main Primary Email Callout */}
+          <motion.div
+            className="primary-channel-card"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="channel-card-top font-mono">
+              <span className="channel-label">PRIMARY INBOX</span>
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="copy-email-btn"
+                aria-label="Copy primary email address"
+                title="Copy to clipboard"
+              >
+                {copiedEmail ? <Check size={14} className="text-accent" /> : <Copy size={14} />}
+                <span>{copiedEmail ? "COPIED" : "COPY"}</span>
+              </button>
             </div>
 
-            <div className="contact-email-content">
-
-              <span className="contact-card-label">
-                HAVE A PROJECT IN MIND?
-              </span>
-
+            <div className="channel-email-wrap">
               <a
-                href="mailto:kumar.m.reh@gmail.com"
-                className="contact-email"
+                href={`mailto:${personalInfo.contacts.primaryEmail}`}
+                className="primary-email-link"
               >
-                kumar.m.reh@gmail.com
+                {personalInfo.contacts.primaryEmail}
               </a>
-
-              <p>
-                The best way to reach me is through email.
-                I&apos;ll get back to you as soon as possible.
+              <p className="email-helper-text">
+                Direct channel for software collaborations, cloud discussions, or prospective roles.
               </p>
+            </div>
 
-              <div className="contact-other-emails">
-                <span>OTHER EMAILS</span>
+            <div className="channel-action-row">
+              <a
+                href={`mailto:${personalInfo.contacts.primaryEmail}`}
+                className="compose-btn"
+              >
+                <Mail size={16} />
+                <span>Compose Email</span>
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
 
-                <a href="mailto:kumar.m.reh@outlook.com">
-                  kumar.m.reh@outlook.com
-                </a>
+            {/* Secondary Inboxes */}
+            <div className="secondary-inboxes font-mono">
+              <span className="secondary-inbox-title">SECONDARY CHANNELS:</span>
+              <div className="secondary-inbox-list">
+                {personalInfo.contacts.secondaryEmails.map((item) => (
+                  <a
+                    key={item.email}
+                    href={`mailto:${item.email}`}
+                    className="secondary-email-item"
+                  >
+                    <span className="sec-email-label text-muted">[{item.label}]</span>
+                    <span className="sec-email-addr">{item.email}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
 
-                <a href="mailto:manthan2404920100193@kccitm.org">
-                  manthan2404920100193@kccitm.org
-                </a>
+          {/* Right Column: Location, Availability & Social Network */}
+          <div className="contact-meta-column">
+            {/* Location & Status Card */}
+            <motion.div
+              className="meta-status-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="meta-card-item">
+                <span className="meta-sub font-mono">LOCATION</span>
+                <div className="meta-val-row">
+                  <MapPin size={16} className="text-accent" />
+                  <strong>{personalInfo.location}</strong>
+                </div>
+                <span className="font-mono text-muted text-micro">{personalInfo.coordinates}</span>
               </div>
 
-            </div>
+              <div className="meta-card-sep" />
 
-            <a
-              href="mailto:kumar.m.reh@gmail.com"
-              className="contact-arrow"
-              aria-label="Send email"
+              <div className="meta-card-item">
+                <span className="meta-sub font-mono">CURRENT STATUS</span>
+                <div className="meta-val-row">
+                  <span className="status-ping-dot" />
+                  <strong>{personalInfo.availability}</strong>
+                </div>
+                <span className="font-mono text-muted text-micro">AVAILABLE FOR COLLABORATION</span>
+              </div>
+            </motion.div>
+
+            {/* Social Network Links */}
+            <motion.div
+              className="social-channels-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              <ArrowUpRight size={20} />
-            </a>
+              <span className="social-sub font-mono">VERIFIED PROFILES</span>
 
+              <div className="social-links-list">
+                {personalInfo.contacts.socials.map((social) => {
+                  const Icon = socialIconsMap[social.platform] || ArrowUpRight;
+                  return (
+                    <a
+                      key={social.platform}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-channel-item"
+                    >
+                      <div className="social-item-left">
+                        <Icon size={18} className="social-icon" />
+                        <div>
+                          <span className="social-name">{social.platform}</span>
+                          <span className="social-handle font-mono text-muted">@{social.handle}</span>
+                        </div>
+                      </div>
+                      <ArrowUpRight size={16} className="social-arrow" />
+                    </a>
+                  );
+                })}
+              </div>
+            </motion.div>
           </div>
+        </div>
 
-          {/* LOCATION CARD */}
-          <div className="contact-info-card">
-
-            <div className="contact-info-icon">
-              <MapPin size={19} strokeWidth={1.7} />
+        {/* Calm Editorial Colophon Footer */}
+        <div className="editorial-colophon-footer">
+          <div className="colophon-left">
+            <div className="footer-brand">
+              <BrandMark size={24} className="footer-brand-mark" ariaLabel="Manthan Kumar Monogram" />
+              <div className="footer-brand-text">
+                <span className="colophon-title font-mono">{personalInfo.name.toUpperCase()}</span>
+                <span className="footer-portfolio-sub font-mono">ENGINEERING PORTFOLIO</span>
+              </div>
             </div>
-
-            <div>
-              <span>BASED IN</span>
-
-              <strong>
-                Greater Noida, India
-              </strong>
-            </div>
-
+            <p className="colophon-desc">
+              Designed as an Editorial Engineering Journal &amp; Digital Workshop.
+            </p>
           </div>
 
-          {/* AVAILABILITY CARD */}
-          <div className="contact-info-card">
-
-            <div className="contact-availability-dot"></div>
-
-            <div>
-              <span>CURRENTLY OPEN TO</span>
-
-              <strong>
-                Software &amp; Cloud Opportunities
-              </strong>
-            </div>
-
+          <div className="colophon-right font-mono">
+            <span>© 2026 MANTHAN KUMAR</span>
+            <span className="colophon-sep">·</span>
+            <span>ALL RIGHTS RESERVED</span>
           </div>
-
-        </motion.div>
-
-        {/* SOCIAL LINKS */}
-        <motion.div
-          className="contact-social-row"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-          }}
-        >
-          <span className="contact-social-title">
-            CONNECT
-          </span>
-
-          <div className="contact-social-links">
-
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-social-link"
-                >
-                  <Icon
-                    size={17}
-                    strokeWidth={1.7}
-                  />
-
-                  <span>{social.label}</span>
-
-                  <ArrowUpRight size={14} />
-                </a>
-              );
-            })}
-
-          </div>
-        </motion.div>
-
-        {/* CLOSING */}
-        <motion.div
-          className="contact-closing"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.7,
-            delay: 0.3,
-          }}
-        >
-          <div className="contact-closing-line"></div>
-
-          <p>
-            Designed &amp; developed by Manthan Kumar
-          </p>
-
-          <span>
-            © 2026
-          </span>
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}

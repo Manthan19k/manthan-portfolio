@@ -1,924 +1,596 @@
-/* =========================================================
-   EXPERIENCE SECTION
-   Professional editorial / portfolio layout
-========================================================= */
-
-.experience-section {
-  width: 100%;
-  background: var(--cream, #f7f4ee);
-  color: var(--charcoal, #202020);
-  padding: 140px 0;
-  overflow: hidden;
+.experience-phase {
+  background-color: var(--bg-primary);
 }
 
-.experience-container {
-  width: min(1200px, calc(100% - 64px));
-  margin: 0 auto;
-}
-
-
-/* =========================================================
-   SECTION INTRO
-========================================================= */
-
-.experience-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-  gap: 80px;
-  align-items: end;
-  margin-bottom: 88px;
-}
-
-.experience-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  line-height: 1;
-  text-transform: uppercase;
-
-  color: var(--orange, #ef7814);
-}
-
-.experience-label::before {
-  content: "";
-
-  width: 6px;
-  height: 6px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-  background: var(--orange, #ef7814);
-}
-
-.experience-title {
-  margin: 22px 0 0;
-
-  font-family: var(--font-heading, inherit);
-  font-size: clamp(4rem, 6.2vw, 6rem);
-  line-height: 0.92;
-  letter-spacing: -0.055em;
-  font-weight: 650;
-}
-
-.experience-intro {
-  max-width: 410px;
-  margin: 0 0 5px;
-
-  font-size: 15px;
-  line-height: 1.8;
-  font-weight: 400;
-
-  color: rgba(32, 32, 32, 0.60);
-}
-
-
-/* =========================================================
-   MAIN EXPERIENCE CARD
-========================================================= */
-
-.experience-card {
-  width: 100%;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(32, 32, 32, 0.10);
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  box-shadow: 0 16px 45px rgba(32, 32, 32, 0.045);
-}
-
-
-/* =========================================================
-   COMPANY INFORMATION
-========================================================= */
-
-.experience-company {
-  display: grid;
-
-  grid-template-columns: 150px minmax(0, 1fr) 210px;
-
-  column-gap: 42px;
-
-  align-items: center;
-
-  padding: 52px;
-
-  border-bottom: 1px solid rgba(32, 32, 32, 0.10);
-}
-
-
-/* =========================================================
-   COMPANY LOGO
-========================================================= */
-
-.experience-logo-wrapper {
-  width: 150px;
-  height: 110px;
-
+.experience-case-files {
   display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* Case File Layout: Left Sticky Dossier Rail + Right Content Stream */
+.case-file-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: clamp(40px, 6vw, 72px);
+  position: relative;
+  align-items: flex-start;
+}
+
+/* Left Sticky Rail: Editorial Dossier Frame */
+.case-identity-rail {
+  position: sticky;
+  top: 96px;
+  z-index: 10;
+}
+
+.identity-rail-dossier {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-xs);
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.rail-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.file-code {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.file-status {
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.rail-company-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.company-logo-frame {
+  width: 100%;
+  padding: 14px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+
+.monogram-frame {
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  padding: 10px;
-
-  border: 1px solid rgba(32, 32, 32, 0.10);
-  border-radius: 16px;
-
-  background: #ffffff;
-
-  overflow: hidden;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  gap: 4px;
+  padding: 14px 10px;
+  border: 1px solid var(--border-medium);
 }
 
-.experience-logo-wrapper:hover {
-  box-shadow: 0 8px 24px rgba(32, 32, 32, 0.06);
+.monogram-tag {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
 }
 
-.experience-logo {
-  display: block;
+.monogram-sub {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
 
-  width: 100%;
-  height: 100%;
-
+.company-logo-img {
+  max-width: 150px;
+  max-height: 46px;
   object-fit: contain;
 }
 
-
-/* =========================================================
-   COMPANY DETAILS
-========================================================= */
-
-.experience-company-info {
-  min-width: 0;
+.company-title {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.2;
 }
 
-.experience-overline {
-  display: block;
-
-  margin-bottom: 15px;
-
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.17em;
+.company-division {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-secondary);
   line-height: 1.4;
-  text-transform: uppercase;
-
-  color: var(--orange, #ef7814);
 }
 
-.company-name {
-  margin: 0;
-
-  font-family: var(--font-heading, inherit);
-
-  font-size: clamp(3rem, 4.1vw, 4.1rem);
-  line-height: 0.96;
-  letter-spacing: -0.05em;
-  font-weight: 650;
+.company-dept {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
 }
 
-.company-group {
-  margin: 18px 0 0;
-
-  font-size: 14px;
-  line-height: 1.6;
-  font-weight: 400;
-
-  color: rgba(32, 32, 32, 0.55);
-}
-
-
-/* =========================================================
-   DURATION
-========================================================= */
-
-.experience-date {
-  min-height: 110px;
-
+.rail-role-tag {
   display: flex;
   flex-direction: column;
-
-  justify-content: center;
-  align-items: flex-start;
-
-  text-align: left;
-
-  padding-left: 32px;
-
-  border-left: 1px solid rgba(32, 32, 32, 0.10);
+  gap: 5px;
+  padding: 12px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-xs);
 }
 
-.date-label {
-  display: block;
-
-  font-size: 10px;
-  font-weight: 500;
-
-  letter-spacing: 0.15em;
-  line-height: 1.4;
-  text-transform: uppercase;
-
-  color: rgba(32, 32, 32, 0.42);
-}
-
-.experience-date strong {
-  display: block;
-
-  margin-top: 8px;
-
-  font-size: 25px;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  font-weight: 600;
-}
-
-.date-role {
-  display: block;
-
-  margin-top: 7px;
-
-  font-size: 12px;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: rgba(32, 32, 32, 0.48);
-}
-
-
-/* =========================================================
-   PROFESSIONAL EXPOSURE
-========================================================= */
-
-.experience-exposure {
-  display: grid;
-
-  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.22fr);
-
-  gap: 78px;
-
-  padding: 72px 52px;
-
-  border-bottom: 1px solid rgba(32, 32, 32, 0.10);
-}
-
-.exposure-title {
-  max-width: 510px;
-
-  margin: 0;
-
-  font-family: var(--font-heading, inherit);
-
-  font-size: clamp(2.8rem, 3.8vw, 3.8rem);
-  line-height: 0.99;
-  letter-spacing: -0.045em;
-  font-weight: 600;
-}
-
-.exposure-description {
-  max-width: 650px;
-
-  margin: 0 0 22px;
-
-  font-size: 15px;
-  line-height: 1.8;
-  font-weight: 400;
-
-  color: rgba(32, 32, 32, 0.62);
-}
-
-.exposure-description:last-child {
-  margin-bottom: 0;
-}
-
-
-/* =========================================================
-   AREAS OF EXPOSURE
-========================================================= */
-
-.exposure-tags-section {
-  display: grid;
-
-  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.22fr);
-
-  gap: 78px;
-  align-items: start;
-
-  padding: 54px 52px;
-
-  border-bottom: 1px solid rgba(32, 32, 32, 0.10);
-}
-
-.exposure-tags-section > .experience-overline {
-  margin: 0;
-}
-
-.exposure-tags {
+.rail-cert-action {
   display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  align-content: flex-start;
+  flex-direction: column;
 }
 
-.exposure-tags span {
+.exp-cert-btn {
   display: inline-flex;
   align-items: center;
-
-  padding: 9px 14px;
-
-  border: 1px solid rgba(32, 32, 32, 0.12);
-  border-radius: 999px;
-
-  background: #faf9f6;
-
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.3;
-
-  color: var(--charcoal, #202020);
-
-  white-space: nowrap;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--accent);
+  color: #FFFFFF;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: all 0.22s var(--ease-editorial);
+  text-align: center;
 }
 
-.exposure-tags span::before {
-  content: "";
-
-  width: 5px;
-  height: 5px;
-
-  flex-shrink: 0;
-
-  margin-right: 8px;
-
-  border-radius: 50%;
-
-  background: var(--orange, #ef7814);
+.exp-cert-btn:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--accent-border);
 }
 
-.exposure-tags span:hover {
-  background: #ffffff;
-
-  border-color: rgba(239, 120, 20, 0.30);
-
-  transform: translateY(-1px);
+.role-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
-
-/* =========================================================
-   WHAT I LEARNED
-========================================================= */
-
-.experience-learning {
-  padding: 72px 52px 62px;
-}
-
-
-/* =========================================================
-   LEARNING HEADER
-========================================================= */
-
-.learning-header {
-  display: grid;
-
-  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.22fr);
-
-  gap: 78px;
-  align-items: start;
-
-  margin-bottom: 48px;
-}
-
-.learning-header .experience-overline {
-  margin-top: 8px;
-  margin-bottom: 0;
-}
-
-.learning-title {
-  max-width: 680px;
-
-  margin: 0;
-
-  font-family: var(--font-heading, inherit);
-
-  font-size: clamp(2.8rem, 3.8vw, 3.8rem);
-  line-height: 0.99;
-  letter-spacing: -0.045em;
+.role-dur {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
   font-weight: 600;
 }
 
-
-/* =========================================================
-   LEARNING GRID
-========================================================= */
-
-.learning-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  border-top: 1px solid rgba(32, 32, 32, 0.12);
-  border-left: 1px solid rgba(32, 32, 32, 0.12);
+/* Section-Specific Story Progress Navigation (01, 02, 03, 04) */
+.section-story-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-
-/* =========================================================
-   LEARNING CARD
-========================================================= */
-
-.learning-card {
-  position: relative;
-
-  min-height: 255px;
-
-  padding: 30px;
-
-  border-right: 1px solid rgba(32, 32, 32, 0.12);
-  border-bottom: 1px solid rgba(32, 32, 32, 0.12);
-
-  background: #ffffff;
-
-  transition:
-    background 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-}
-
-.learning-card:hover {
-  background: #faf8f3;
-
-  box-shadow:
-    inset 0 0 0 1px rgba(239, 120, 20, 0.10);
-}
-
-
-/* =========================================================
-   LEARNING NUMBER
-========================================================= */
-
-.learning-number {
-  display: block;
-
-  font-size: 10px;
-  font-weight: 500;
-
+.progress-caption {
+  font-size: 9px;
   letter-spacing: 0.14em;
-  line-height: 1.4;
-
-  color: var(--orange, #ef7814);
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
+.progress-rail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-/* =========================================================
-   LEARNING ARROW
-========================================================= */
-
-.learning-arrow {
-  position: absolute;
-
-  top: 27px;
-  right: 27px;
-
-  width: 32px;
-  height: 32px;
-
+.progress-rail-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(32, 32, 32, 0.12);
-  border-radius: 50%;
-
-  font-size: 14px;
-  font-weight: 400;
-
-  color: var(--charcoal, #202020);
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+  gap: 10px;
+  padding: 5px 8px;
+  border-radius: var(--radius-xs);
+  text-align: left;
+  cursor: pointer;
+  opacity: 0.55;
+  background: transparent;
+  border: none;
+  transition: all 0.2s var(--ease-editorial);
 }
 
-.learning-card:hover .learning-arrow {
-  background: var(--orange, #ef7814);
-  color: #ffffff;
-
-  transform: rotate(45deg);
+.progress-rail-item:hover {
+  opacity: 0.9;
+  background: var(--bg-secondary);
 }
 
+.progress-rail-item.active {
+  opacity: 1;
+  background: var(--bg-secondary);
+}
 
-/* =========================================================
-   LEARNING CARD CONTENT
-========================================================= */
+.item-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 18px;
+  transition: color 0.2s ease;
+}
 
-.learning-card h4 {
-  max-width: 390px;
+.progress-rail-item.active .item-num {
+  color: var(--accent);
+}
 
-  margin: 60px 0 13px;
+.item-bar {
+  width: 20px;
+  height: 1px;
+  background: var(--border-strong);
+  transition: all 0.25s ease;
+}
 
-  font-family: var(--font-heading, inherit);
+.progress-rail-item.active .item-bar {
+  width: 28px;
+  background: var(--accent);
+  height: 2px;
+}
 
-  font-size: 20px;
-  line-height: 1.2;
+.item-name {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-rail-item.active .item-name {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.rail-verification {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* Right Side: Case Content Stream */
+.case-content-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Executive Summary */
+.case-executive-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-medium);
+}
+
+.summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+
+.summary-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 750;
+  line-height: 1.15;
   letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.summary-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summary-p {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.72;
+  color: var(--text-secondary);
+}
+
+/* Specs Table: Open Dossier Grid */
+.case-specs-table {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-xs);
+  padding: 16px 20px;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.case-spec-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.spec-key {
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
   font-weight: 600;
 }
 
-.learning-card p {
-  max-width: 450px;
-
-  margin: 0;
-
-  font-size: 13px;
-  line-height: 1.75;
-  font-weight: 400;
-
-  color: rgba(32, 32, 32, 0.56);
+.spec-val {
+  color: var(--text-primary);
 }
 
-
-/* =========================================================
-   EXPERIENCE FOOTER
-========================================================= */
-
-.experience-footer {
+/* 4 Open Sequential Story Modules: DE-BOXIFIED EDITORIAL ROWS */
+.story-sequential-modules {
   display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border-medium);
+}
 
+.module-editorial-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  scroll-margin-top: 110px;
+  transition: all 0.25s var(--ease-editorial);
+  position: relative;
+}
+
+.module-editorial-row:hover {
+  border-bottom-color: var(--border-strong);
+}
+
+.module-row-index {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.module-big-num {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+}
+
+.module-step-label {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  display: none; /* revealed on mobile or small screens */
+}
+
+.module-row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.module-row-heading-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.module-title-main {
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.module-editorial-row:hover .module-title-main {
+  color: var(--accent);
+}
+
+.module-arrow {
+  color: var(--text-muted);
+  opacity: 0.4;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.module-editorial-row:hover .module-arrow {
+  color: var(--accent);
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.module-core-desc {
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.module-practical-detail {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  padding-top: 6px;
+}
+
+/* Exposure Panel: Open Tag Flow */
+.case-exposure-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.exposure-title-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-primary);
+}
+
+.exposure-tags-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.exposure-tag-unit {
+  font-size: 11px;
+  padding: 6px 14px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xs);
+  transition: all 0.2s ease;
+}
+
+.exposure-tag-unit:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Derived Project Card: Architectural Bridge */
+.derived-project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xs);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.derived-top {
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
 
-  gap: 30px;
+.derived-project-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
 
-  padding: 24px 52px;
+.derived-body p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
 
-  border-top: 1px solid rgba(32, 32, 32, 0.10);
+.derived-action-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 8px;
+}
 
+.derived-cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 11px;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.035em;
-
-  color: rgba(32, 32, 32, 0.42);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+  transition: all 0.2s ease;
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1000px) {
-
-  .experience-section {
-    padding: 110px 0;
-  }
-
-  .experience-container {
-    width: min(100% - 48px, 1200px);
-  }
-
-  .experience-header {
-    grid-template-columns: 1fr;
-
-    gap: 30px;
-
-    margin-bottom: 65px;
-  }
-
-  .experience-intro {
-    max-width: 650px;
-  }
-
-
-  /* COMPANY */
-
-  .experience-company {
-    grid-template-columns: 135px minmax(0, 1fr);
-
-    gap: 30px;
-
-    padding: 44px;
-  }
-
-  .experience-logo-wrapper {
-    width: 135px;
-    height: 100px;
-  }
-
-  .experience-date {
-    grid-column: 1 / -1;
-
-    min-height: auto;
-
-    align-items: flex-start;
-
-    text-align: left;
-
-    padding: 24px 0 0;
-
-    border-left: none;
-    border-top: 1px solid rgba(32, 32, 32, 0.10);
-  }
-
-
-  /* EXPOSURE */
-
-  .experience-exposure,
-  .exposure-tags-section,
-  .learning-header {
-    grid-template-columns: 1fr;
-
-    gap: 30px;
-  }
-
-  .experience-exposure {
-    padding: 60px 44px;
-  }
-
-  .exposure-tags-section {
-    padding: 50px 44px;
-  }
-
-  .experience-learning {
-    padding: 60px 44px;
-  }
-
-  .learning-header {
-    margin-bottom: 42px;
-  }
-
-  .experience-footer {
-    padding-left: 44px;
-    padding-right: 44px;
-  }
+.derived-cert-link:hover {
+  background: var(--accent);
+  color: #FFFFFF;
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 650px) {
-
-  .experience-section {
-    padding: 85px 0;
-  }
-
-  .experience-container {
-    width: min(100% - 30px, 1200px);
-  }
-
-
-  /* HEADER */
-
-  .experience-header {
-    gap: 28px;
-
-    margin-bottom: 52px;
-  }
-
-  .experience-title {
-    margin-top: 19px;
-
-    font-size: clamp(3.1rem, 15vw, 5rem);
-    line-height: 0.93;
-  }
-
-  .experience-intro {
-    font-size: 14px;
-    line-height: 1.75;
-  }
-
-
-  /* CARD */
-
-  .experience-card {
-    border-radius: 18px;
-  }
-
-
-  /* COMPANY */
-
-  .experience-company {
+@media (max-width: 960px) {
+  .case-file-layout {
     grid-template-columns: 1fr;
-
-    gap: 26px;
-
-    padding: 32px 25px;
+    gap: 36px;
   }
-
-  .experience-logo-wrapper {
-    width: 140px;
-    height: 100px;
+  .case-identity-rail {
+    position: static;
   }
-
-  .experience-overline {
-    margin-bottom: 12px;
-
-    font-size: 9px;
-    letter-spacing: 0.15em;
-  }
-
-  .company-name {
-    font-size: 2.7rem;
-    line-height: 0.97;
-  }
-
-  .company-group {
-    margin-top: 15px;
-
-    font-size: 13px;
-  }
-
-  .experience-date {
-    grid-column: auto;
-
-    gap: 0;
-
-    padding: 22px 0 0;
-  }
-
-  .experience-date strong {
-    margin-top: 7px;
-
-    font-size: 23px;
-  }
-
-  .date-role {
-    margin-top: 6px;
-  }
-
-
-  /* PROFESSIONAL EXPOSURE */
-
-  .experience-exposure {
-    display: block;
-
-    padding: 50px 25px;
-  }
-
-  .exposure-title {
-    max-width: 100%;
-
-    margin-bottom: 32px;
-
-    font-size: 2.55rem;
-    line-height: 1;
-  }
-
-  .exposure-description {
-    font-size: 14px;
-    line-height: 1.75;
-  }
-
-
-  /* AREAS OF EXPOSURE */
-
-  .exposure-tags-section {
-    display: block;
-
-    padding: 44px 25px;
-  }
-
-  .exposure-tags-section > .experience-overline {
-    margin-bottom: 20px;
-  }
-
-  .exposure-tags {
-    gap: 8px;
-  }
-
-  .exposure-tags span {
-    padding: 8px 12px;
-
-    font-size: 11px;
-  }
-
-
-  /* WHAT I LEARNED */
-
-  .experience-learning {
-    padding: 50px 25px;
-  }
-
-  .learning-header {
-    display: block;
-
-    margin-bottom: 36px;
-  }
-
-  .learning-header .experience-overline {
-    margin-top: 0;
-    margin-bottom: 17px;
-  }
-
-  .learning-title {
-    max-width: 100%;
-
-    margin: 0;
-
-    font-size: 2.55rem;
-    line-height: 1;
-  }
-
-  .learning-grid {
+  .module-editorial-row {
     grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 24px 0;
   }
-
-  .learning-card {
-    min-height: auto;
-
-    padding: 26px;
+  .module-row-index {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
   }
-
-  .learning-card h4 {
-    margin-top: 52px;
-
-    font-size: 19px;
+  .module-big-num {
+    font-size: 1.8rem;
   }
-
-  .learning-card p {
-    font-size: 13px;
+  .module-step-label {
+    display: inline;
   }
-
-
-  /* FOOTER */
-
-  .experience-footer {
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 8px;
-
-    padding: 21px 25px;
-
-    font-size: 10px;
+  .case-specs-table {
+    gap: 12px;
   }
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 420px) {
-
-  .experience-title {
-    font-size: 3rem;
-  }
-
-  .company-name {
-    font-size: 2.35rem;
-  }
-
-  .exposure-title,
-  .learning-title {
-    font-size: 2.2rem;
-  }
-
-  .experience-logo-wrapper {
-    width: 130px;
-    height: 92px;
-  }
-
-  .experience-date strong {
-    font-size: 22px;
-  }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .experience-section *,
-  .experience-section *::before,
-  .experience-section *::after {
-    scroll-behavior: auto !important;
-
-    transition-duration: 0.01ms !important;
-
-    animation-duration: 0.01ms !important;
-
-    animation-iteration-count: 1 !important;
+  .case-spec-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }

@@ -1,0 +1,19 @@
+/* Hairline top progress bar (GPU transform scaleX) */
+.scroll-hairline-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: transparent;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.scroll-hairline-bar {
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(201, 90, 8, 0.45);
+  will-change: transform;
+}
